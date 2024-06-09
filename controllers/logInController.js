@@ -2,23 +2,20 @@ const { UserModel } = require('../models/userModel');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
-// Read in JWT-secret from enviroment
-const jwtSecret = process.env.JWT_SECRET;
+const jwtSecret = process.env.jwtSecret;
 
-// Function to log in user
 exports.logInUser = async (req, res, next) => {
   try {
     const { email, password } = req.body;
 
-    // Find user based on email adress
+    // Find user based on email address
     const user = await UserModel.findOne({ email });
     if (!user) {
       throw new Error('User not found');
     }
 
-    // Compare the password with the hashed password in the database
-    const passwordMatch = await bcrypt.compare(password, user.password);
-    if (!passwordMatch) {
+    // Compare the plain-text password with the password in the database
+    if (password !== user.password) {
       throw new Error('Invalid password');
     }
 
@@ -33,11 +30,11 @@ exports.logInUser = async (req, res, next) => {
       id: user._id,
       token,
     });
-  } catch (e) {
-    // If log in failed, catch error
+  } catch (error) {
+    // If login failed, catch error
     res.status(400).json({
       status: 'fail',
-      message: e.message,
+      message: error.message,
     });
   }
 };
