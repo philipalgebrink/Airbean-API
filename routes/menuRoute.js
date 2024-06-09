@@ -11,4 +11,6 @@ router.get('/menu', getMenu);
 router.post('/menu', createMenuItem);
 router.delete('/menu/:itemID', deleteMenuItem);
 
+router.post('/admin/menu', createMenuItem);
+
 module.exports = router;
