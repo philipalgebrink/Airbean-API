@@ -2,7 +2,7 @@ const { UserModel } = require('../models/userModel');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
-const jwtSecret = process.env.jwtSecret;
+const jwtSecret = process.env.JWT_SECRET;
 
 exports.logInUser = async (req, res, next) => {
   try {

@@ -5,16 +5,21 @@ const { OrderSchema } = require('./orderModel');
 const UserSchema = new mongoose.Schema({
   name: {
     type: String,
-    required: [true, 'Please provide a name'], 
+    required: [true, 'Please provide a name'],
   },
   email: {
     type: String,
-    required: [true, 'Please provide email'], 
+    required: [true, 'Please provide email'],
     unique: true, // Every user must have unique Email 
   },
   password: {
     type: String,
-    required: [true, 'Please provide password'], 
+    required: [true, 'Please provide password'],
+  },
+  role: {
+    type: String,
+    enum: ['user', 'admin'],
+    default: 'user',
   },
   orders: [OrderSchema], // Users Order history
 });
