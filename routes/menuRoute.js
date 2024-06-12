@@ -13,7 +13,7 @@ router.get('/menu', getMenu);
 
 // Admin interface routes
 router.post('/admin/menu', requireAdmin, createMenuItem);
-router.post('/promotional-offers', requireAdmin, createPromotionalOffer)
+router.post('/admin/promotional-offers', requireAdmin, createPromotionalOffer)
 router.delete('/admin/menu/:itemID', requireAdmin, deleteMenuItem);
 router.put('/admin/menu/:id', requireAdmin, updateMenuItem);
 
