@@ -22,7 +22,7 @@ To set up the project locally, follow these steps:
 
 1.  **Clone the repository:**
 
-	` git clone https://github.com/LucasDaSilva96/Airbean-API.git`
+	` git clone http://github.com/LucasDaSilva96/Airbean-API.git`
 	`cd airbean-api`
 
 2.  **Install dependencies:**
@@ -37,31 +37,95 @@ To set up the project locally, follow these steps:
     
 The server should now be running on `http://localhost:8000`.
 
+## How to Use
+
+1. **Log in**
+   - **Description:** There is already a user created.
+   - **Method:** POST
+   - **API Endpoint:** `http://localhost:8000/api/users/login`
+   - **Instructions:**
+     - Click the "Body" tab.
+     - Select "raw" and "JSON".
+     - Add the following credentials:
+       ```json
+       {
+         "email": "philipalgebrink.pa@gmail.com",
+         "password": "15235"
+       }
+       ```
+     - Save the token generated.
+
+2. **View Menu**
+   - **Method:** GET
+   - **API Endpoint:** `http://localhost:8000/api/menu`
+   - **Instructions:**
+     - Access the API using the provided URL.
+     - Save the IDs of items if you plan to update or delete them in the future.
+
+3. **Update Menu Item**
+   - **Method:** PUT
+   - **API Endpoint:** `http://localhost:8000/api/menu/:id`
+   - **Request Body:**
+     ```json
+     {
+       "title": "Updated Item Title",
+       "description": "Updated Item Description",
+       "price": 15.99,
+       "image": "http://example.com/updated_image.jpg"
+     }
+     ```
+   - **Note:** Replace `:id` with the ID of the item you want to update.
+
+4. **Delete Menu Item**
+   - **Method:** DELETE
+   - **API Endpoint:** `http://localhost:8000/api/menu/:id`
+   - **Note:** Replace `:id` with the ID of the item you want to delete.
+
+5. **Create Promotional Offer**
+   - **Method:** POST
+   - **API Endpoint:** `http://localhost:8000/api/promotions`
+   - **Request Body:**
+     ```json
+     {
+       "products": ["Product 1", "Product 2"],
+       "price": 40.00
+     }
+     ```
+   - **Note:** Ensure that the products listed in the offer actually exist in the menu.
+
+    
+The server should now be running on `http://localhost:8000`.
 
 
 ## API-ENDPOINTS:
 
   
+- **Create account:** http://localhost:8000/api/signUp (POST)
 
-- **See Menu:** https://localhost:8000/api/menu (GET)
+- **Log in:** http://localhost:8000/api/logIn (POST)
+There is already a user made in the database that has admin role.
+Email: test@gmail.com
+Password: 15235
 
-- **Create Menu-item:** https://localhost:8000/api/menu (POST)
+- **See Menu:** http://localhost:8000/api/menu (GET)
 
-- **Delete Menu-item:** https://localhost:8000/api/menu/:itemID (DELETE)
+- **Create Menu-item:** http://localhost:8000/api/admin/menu (POST)
 
-- **Create account:** https://localhost:8000/api/signUp (POST)
+- **Create Promotional Offer:** http://localhost:8000/api/admin/promotional-offers (POST)
 
-- **Create order:** https://localhost:8000/api/order (POST)
+- **Update Menu-item** http://localhost:8000/api/admin/menu/:itemID (PUT)
 
-- **Log in:** https://localhost:8000/api/logIn (POST)
+- **Delete Menu-item:** http://localhost:8000/api/admin/menu/:itemID (DELETE)
 
-- **See order history :** https://localhost:8000/api/orderHistory/:id (GET)
+- **Create order:** http://localhost:8000/api/order (POST)
 
-- **See delivery stats:** https://localhost:8000/api/deliveryStats/:orderID (GET)
+- **See order history :** http://localhost:8000/api/orderHistory/:id (GET)
 
-- **Update delivery stats:** https://localhost:8000/api/deliveryStats/:orderID/?:userID (GET)
+- **See delivery stats:** http://localhost:8000/api/deliveryStats/:orderID (GET)
 
-- **About:** https://localhost:8000/api/about (GET)
+- **Update delivery stats:** http://localhost:8000/api/deliveryStats/:orderID/?:userID (GET)
+
+- **About:** http://localhost:8000/api/about (GET)
 
 ## Technologies Used
 -   **Programming Language:** JavaScript
