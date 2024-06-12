@@ -74,11 +74,13 @@ The server should now be running on `http://localhost:8000`.
        "image": "http://example.com/updated_image.jpg"
      }
      ```
+   - **Authorization:** Add the JWT token to the request headers.
    - **Note:** Replace `:id` with the ID of the item you want to update.
 
 4. **Delete Menu Item**
    - **Method:** DELETE
    - **API Endpoint:** `http://localhost:8000/api/menu/:id`
+   - **Authorization:** Add the JWT token to the request headers.
    - **Note:** Replace `:id` with the ID of the item you want to delete.
 
 5. **Create Promotional Offer**
@@ -87,15 +89,23 @@ The server should now be running on `http://localhost:8000`.
    - **Request Body:**
      ```json
      {
-       "products": ["Product 1", "Product 2"],
-       "price": 40.00
+        "includedProducts": ["itemID1", "itemID2"],
+        "promotionalPrice": SETPRICE
      }
      ```
+   - **Authorization:** Add the JWT token to the request headers.
    - **Note:** Ensure that the products listed in the offer actually exist in the menu.
 
-    
-The server should now be running on `http://localhost:8000`.
+6. **Include JWT Token in HTTP Headers**
 
+    - **Retrieve the JWT Token**
+   After successfully logging in and receiving the JWT token from the server, save the token in your client application. You can store it in memory, local storage, or in a cookie, depending on your application's requirements and security considerations.
+
+    - **Include the Token in Headers**
+   When making authenticated requests to protected endpoints, include the JWT token in the "Authorization" header of your HTTP request. The token should be prefixed with the word "Bearer" followed by a space.
+
+   - **Example**
+   Authorization: `Bearer your_token_here`
 
 ## API-ENDPOINTS:
 
